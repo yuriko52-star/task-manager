@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class);
-    Route::get('/tasks', fn() => 'タスク一覧（準備中）')->name('tasks.index');
+    Route::resource('tasks', TaskController::class);
 
     // Route::get('/categories', fn() => 'カテゴリー一覧（準備中）')->name('categories.index');
 });
