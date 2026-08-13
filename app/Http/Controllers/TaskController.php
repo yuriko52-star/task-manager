@@ -48,9 +48,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        if($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('view', $task);
         $task->load('category');
         return view('tasks.show', compact('task'));
     }
@@ -60,9 +58,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        if($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('update', $task);
         $categories = Category::orderBy('name')->get();
         return view('tasks.edit', compact('task','categories'));
      }
@@ -72,9 +68,8 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task)
     {
-        if($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('update', $task);
+    
         $task->update($request->validated());
         return redirect()->route('tasks.index')->with('success', 'タスクを更新しました');
     }
@@ -84,9 +79,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if($task->user_id !== auth()->id()) {
-            abort(403);
-        }
+        $this->authorize('delete', $task);
         $task->delete();
         return redirect()->route('tasks.index')->with('success', 'タスクを削除しました');
     }

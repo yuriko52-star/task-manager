@@ -26,9 +26,9 @@
                         <div class="flex items-center mt-2">
                             {{-- 優先度表示 --}}
                             <span class="px-2 py-1 text-xs rounded 
-                                @if($task->priority === 3) bg-red-100 text-red-800
-                                @elseif($task->priority === 2) bg-yellow-100 text-yellow-800
-                                @else bg-green-100 text-green-800
+                                @if($task->priority === 3)  text-red-800
+                                @elseif($task->priority === 2)  text-yellow-800
+                                @else  text-green-800
                                 @endif">
                                 @if($task->priority === 3) 高
                                 @elseif($task->priority === 2) 中
